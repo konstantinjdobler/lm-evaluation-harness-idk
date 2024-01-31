@@ -1,3 +1,28 @@
+# idk edits
+
+## setup
+in a fresh conda env w/ python3.11, run:
+```
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+```
+
+and then:
+
+```
+pip install -e ".[zeno,sentencepiece]"
+```
+
+## run
+
+
+```
+lm_eval --model hf --model_args pretrained=kd-shared/<modelname>,dtype=bfloat16 --tasks mmlu_college_computer_science --num_fewshot 5 --device cuda:0 --log_samples --write_out  --output_path idkout/
+```
+
+
+we can then parse the JSON with all results for each sample and calulcate our own stats.
+
+
 # Language Model Evaluation Harness
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10256836.svg)](https://doi.org/10.5281/zenodo.10256836)
