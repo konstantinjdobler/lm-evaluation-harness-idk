@@ -757,6 +757,11 @@ class HFLM(LM):
         # context_enc = self.tok_encode(context, add_special_tokens=False)
         context_enc_len = len(context_enc)
         continuation_enc = whole_enc[context_enc_len:]
+        # there's some bug where <thinking...> is encoded with an additionla space, probably becasue it's a special token
+        # just rmeove the space
+        if 32000 in continuation_enc:
+            continuation_enc = [32000]
+        print(continuation_enc)
         return context_enc, continuation_enc
 
     def loglikelihood(self, requests: List[Instance]) -> List[Tuple[float, bool]]:
